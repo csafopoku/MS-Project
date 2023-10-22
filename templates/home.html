@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Predictor</title>
+    <style>
+        body {
+            background-color: #4B8BF5; /* Background color for the entire page (FIFA Blue) */
+            font-family: Arial, sans-serif; /* Set the font family for text */
+            color: #000; /* Text color (Black) */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px; /* Set the maximum width for the content container */
+            margin: 0 auto; /* Center-align the container horizontally */
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center; /* Center-align the heading text */
+        }
+
+        form {
+            background-color: white; /* Background color for the form */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners for the form */
+        }
+
+        label {
+            display: block; /* Display labels as block elements */
+            margin-top: 10px; /* Add space above labels */
+        }
+
+        input {
+            width: 100%; /* Set input width to 100% */
+            padding: 10px; /* Add padding to inputs */
+            margin-top: 5px; /* Add space above inputs */
+            border: 1px solid #000; /* Add a border to inputs */
+            border-radius: 5px; /* Rounded corners for inputs */
+        }
+
+        button {
+            background-color: #4B8BF5; /* Button background color (FIFA Blue) */
+            color: white; /* Text color on the button */
+            padding: 10px 20px; /* Padding inside the button */
+            border: none; /* Remove button border */
+            border-radius: 5px; /* Rounded corners for the button */
+            cursor: pointer; /* Change cursor to a pointer on hover */
+        }
+
+        button:hover {
+            background-color: #3573C8; /* Button color on hover (Slightly darker blue) */
+        }
+
+        p {
+            text-align: center; /* Center-align text in paragraphs */
+            font-size: 1.2em; /* Set font size for paragraphs */
+            margin-top: 10px; /* Add space above paragraphs */
+        }
+
+        .error-message {
+            background-color: #FF6B6B; /* Error message background color (Red) */
+            color: white; /* Text color in error messages */
+            text-align: center; /* Center-align error messages */
+            padding: 10px; /* Padding inside error messages */
+            border-radius: 5px; /* Rounded corners for error messages */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FIFA Player Predictor</h1>
+        {% if prediction %}
+            <p>Predicted Value: {{ prediction }}</p> <!-- Display the predicted value if available -->
+            <p>Confidence Level: {{ confidence }}</p> <!-- Display the confidence level if available -->
+        {% endif %}
+        <form method="post">
+            <label for="value_eur">Value (EUR):</label>
+            <input type="number" id="value_eur" name="value_eur" required> <!-- Input field for Value (EUR) -->
+
+
+
+            <label for="release_clause_eur">Release Clause (EUR):</label>
+            <input type="number" id="release_clause_eur" name="release_clause_eur" required> <!-- Input field for Release Clause (EUR) -->
+
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required> <!-- Input field for Age -->
+
+
+            <label for="potential">Potential:</label>
+            <input type="number" id="potential" name="potential" required> <!-- Input field for Potential -->
+
+
+            <label for="movement_reactions">Movement Reactions:</label>
+            <input type="number" id="movement_reactions" name="movement_reactions" required> <!-- Input field for Movement Reactions -->
+
+
+            <label for="defending">Defending:</label>
+            <input type="number" id="defending" name="defending" required> <!-- Input field for Defending -->
+
+
+            <label for="wage_eur">Wage (EUR):</label>
+            <input type="number" id="wage_eur" name="wage_eur" required> <!-- Input field for Wage (EUR) -->
+
+
+            <label for="mentality_interceptions">Mentality Interceptions:</label>
+            <input type="number" id="mentality_interceptions" name="mentality_interceptions" required> <!-- Input field for Mentality Interceptions -->
+
+
+            <label for="attacking_crossing">Attacking Crossing:</label>
+            <input type="number" id="attacking_crossing" name="attacking_crossing" required> <!-- Input field for Attacking Crossing -->
+
+
+            <label for="goalkeeping_diving">Goalkeeping Diving:</label>
+            <input type="number" id="goalkeeping_diving" name="goalkeeping_diving" required> <!-- Input field for Goalkeeping Diving -->
+
+
+            <label for="goalkeeping_reflexes">Goalkeeping Reflexes:</label>
+            <input type="number" id="goalkeeping_reflexes" name="goalkeeping_reflexes" required> <!-- Input field for Goalkeeping Reflexes -->
+
+
+            <label for="defending_marking_awareness">Defending Marking Awareness:</label>
+            <input type="text" id="defending_marking_awareness" name="defending_marking_awareness" required> <!-- Input field for Mentality Composure -->
+
+
+            <label for="goalkeeping_positioning">Goalkeeping Positioning:</label>
+            <input type="text" id="goalkeeping_positioning" name="goalkeeping_positioning" required> <!-- Input field for Mentality Penalties -->
+
+
+            <label for="mentality_composure">Mentality Composure:</label>
+            <input type="text" id="mentality_composure" name="mentality_composure" required> <!-- Input field for Mentality Composure -->
+
+
+            <label for="mentality_penalties">Mentality Penalties:</label>
+            <input type="text" id="mentality_penalties" name="mentality_penalties" required> <!-- Input field for Mentality Penalties -->
+            
+            <button type="submit">Predict</button> <!-- Submit button for making predictions -->
+        </form>
+        {% if error %}
+            <div class="error-message"> <!-- Display error messages with a red background -->
+                Error: {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

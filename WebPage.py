@@ -17,6 +17,8 @@ def index():
     error_message = None
 
 
+
+
     if request.method == 'POST':
         try:
             # Extract and convert user input data from the web form
@@ -37,6 +39,8 @@ def index():
             mentality_penalties = int(request.form['mentality_penalties'])
 
 
+
+
             # Create a list of feature values from the user input
             feature_values = [value_eur, release_clause_eur, age, potential,
                               movement_reactions, defending, wage_eur, mentality_interceptions,
@@ -45,27 +49,36 @@ def index():
                               mentality_composure, mentality_penalties]
 
 
+
+
             # Make a prediction using the machine learning model
             prediction = model.predict([feature_values])[0]
-            
+           
             # Average value of the Y_train (overall or rating) was 65.67778716216216
             average_target = np.mean(65.67778716216216)
-            
+           
             # Calculate confidence as a percentage with 1 decimal place
             confidence = 100 * (1 - (abs(prediction - average_target) / average_target))
 
-            # Format confidence to have 1 decimal place and add a percentage sign
+
+            # Format confidence to have 1 decimal place and add `a percentage sign
             confidence = f'{confidence:.1f}%'
         except ValueError as ve:
             error_message = "Invalid input values. Please enter valid numerical values."
+
+
 
 
         except KeyError as ke:
             error_message = f"Missing or incorrect input field: {str(ke)}"
 
 
+
+
         except Exception as e:
             error_message = f"An error occurred: {str(e)}"
+
+
 
 
     if error_message:
@@ -75,8 +88,14 @@ def index():
             return jsonify({'error': error_message})
 
 
+
+
     return render_template('home.html', prediction=prediction,confidence=confidence, error=error_message)
+
+
 
 
 if __name__ == '__main':
     app.run(port=5000, debug=True)
+
+
